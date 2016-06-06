@@ -11,7 +11,10 @@
                     </div>
                     <div class="card-content">
                         <p>{{producto.descripcion}}</p>
-                        <p>{{producto.precio}}</p>
+                        <p>Marca: {{producto.marca}}</p>
+                        <p>Precio: $ {{producto.precio}}</p>
+                        <p>Calificación: {{producto.calificacion}}</p>
+                        <p>En existencia: {{producto.inventario}}</p>
                     </div>
                     <div class="card-action">
                     	<form action="/agregar/{{producto.id}}" method="post">
