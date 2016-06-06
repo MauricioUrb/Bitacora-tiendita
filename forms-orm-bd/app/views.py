@@ -14,7 +14,7 @@ def editar():
 		user.nickname=form.login.data
 		user.password=form.password.data
 		user.email=form.email.data
-		db.session.merge(user) 
+		db.session.merge(user)
 		db.session.commit()
 		session['productos'] = list()
 		flash('Cambios guardados')
@@ -115,7 +115,9 @@ def agregar(id_producto):
 	if form.validate_on_submit():
 		productos = session['productos']
 		producto_nombre = Producto.query.get(id_producto)
-		producto = [id_producto, producto_nombre.nombre, form.cantidad.data]
+		producto_precio = Producto.query.get(id_producto)
+		producto_total = form.cantidad.data * producto_precio
+		producto = [id_producto, producto_nombre.nombre, form.cantidad.data, producto_precio.precio, producto_total.total]
 		productos.append(producto)
 		session['productos'] = productos
 
@@ -126,5 +128,4 @@ def agregar(id_producto):
 
 	productos = Producto.query.all()
 	return render_template('catalogo.html',productos = productos)
-
 
