@@ -5,10 +5,11 @@
     <div class="row">
 
         {% for producto in productos %}
-            <div class="col s12 m3"> <!-- esta declaración dice, en movil 1 sola imagen, en tablet y desktop 3 imagenes -->
-                <div class="card small">
+            <div class="col-md-3"> <!-- esta declaración dice, en movil 1 sola imagen, en tablet y desktop 3 imagenes -->
+                <div class="small">
+                    {% if producto.inventario != 0 %}
                     <div class="card-image">
-                        <img src="{{ url_for('static', filename='img/productos/' + producto.foto) }}"  width="300px" height="400px"/><br>
+                       <center><img src="{{ url_for('static', filename='img/productos/' + producto.foto) }}"  width="200px" height="200px" class="img-thumbnail"/><br></center><br>
                         <p class="second"> {{  producto.nombre}}</p>
                     </div>
                     <div class="card-content">
@@ -16,10 +17,14 @@
                         <p class="second"> En existencia: {{producto.inventario}}</p>
                     </div>
                     <div class="card-action">
-                      
-                        <a href="/productos/{{producto.id}}" class="waves-effect waves-light btn">Ver más</a>
+                        {% if g.user.is_authenticated %}
+                         <a href="/productos/{{producto.id}}" class="waves-effect waves-light btn">Ver más</a>
+                        <!--<button type="button" class="btn btn-primary" href="/productos/{{producto.id}}">Ver más</button>-->
+                        {% endif%}
                     </div>
+                    {% endif%}
                 </div>
+                <br>
             </div>
         {% endfor%}
         <style type="text/css">
@@ -27,7 +32,7 @@
                 font-size: 1.5em;
             }
             .small {
-                border: 3px solid lightblue;
+                border: 3px solid black;
             }
         </style>
     </div>
