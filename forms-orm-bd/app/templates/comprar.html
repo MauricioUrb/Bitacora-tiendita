@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Usuario:</th>
+                    <th>Fecha: </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{g.user.nickname}}</td>
+                    <td>
+                        <script>
+                            var f = new Date();
+                            document.write(f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
+                        </script>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
