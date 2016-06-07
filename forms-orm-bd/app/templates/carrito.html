@@ -5,32 +5,41 @@
     <div class="row">
             <div class="col s1 m12">
             {% if g.user.is_authenticated %}
-            <h5>Usted es el usuario: {{ g.user.nickname}}</h5>
-                <table>
+                <table class="table table-hover">
                  <thead>
                   <tr>
                       <th data-field="nombre">Producto</th>
-                      <th data-field="cantidad">&nbsp;&nbsp;&nbsp;Cantidad</th>
-                      <th data-field="precio">&nbsp;&nbsp;&nbsp;&nbsp;Precio $</th>
-                      <th data-field="total">&nbsp;&nbsp;&nbsp;&nbsp;Total $</th>
+                      <th data-field="cantidad">Cantidad</th>
+                      <th data-field="precio">Precio $</th>
+                      <th data-field="total">SubTotal $</th>
+                      <th>&nbsp;&nbsp;&nbsp;&nbsp;Total $ </th>
                   </tr>
                 </thead>
                 <tbody>
                 {% for producto in productos %}
                     <tr>
                         <td>{{producto[1]}}</td>
-                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{producto[2]}}</td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{producto[2]}}</td>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{producto[3]}}</td>
-                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{producto[4]}}</td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{producto[4]}}</td>
+                        <th>{{producto[5]}}</th>
                     </tr>
-
                 {% endfor %}
+                    <th> </th>
+                    <th> </th>
                 </tbody>
                 </table>
 
             {% endif %}
-            <a href="/productos" class="waves-effect waves-light btn-large">Continuar comprando</a>
+            <a href="/productos" class="waves-effect waves-light btn-large">Continuar comprando</a><br>
+            <a href="/comprar" onclick="compra()">Comprar</a>
+            <script type="text/javascript">
+            function compra() {
+              alert('Compra realizada!!!');
+            }
+            </script>
             </div>
+
     </div>
     
 {% endblock %}
